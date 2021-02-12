@@ -2,22 +2,35 @@
 @section('seccion')
           <h1 class="display-4">Notas</h1>
           @if(session('mensaje'))
-          <div class="alert alert-success">
+          <div class="alert alert-success alert-dismissible fade show" role="alert">
             {{session('mensaje')}}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
           </div>
           @endif
+
           
           <form action="{{route('notas.crear')}}" method="POST">
             @csrf
             
-            @error('name')
-            <div class="alert alert-danger">El nombre es obligatorio!</div>
-            @enderror
-
-            @error('description')
-            <div class="alert alert-danger">La descripción es obligatoria!</div>
-            @enderror
-
+            @if($errors->has('description'))
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+              La descripción es requerida
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            @endif
+            @if($errors->has('name'))
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+              El nombre es requerido
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            @endif
+            
             <input type="text" name="name" placeholder="Nombre" class="form-control mb-2"
             value="{{old('name')}}">
             <input type="text" name="description" placeholder="Descripción" class="form-control mb-2"
