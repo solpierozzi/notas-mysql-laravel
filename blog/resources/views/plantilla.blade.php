@@ -21,7 +21,7 @@
       <div class="container">
           @yield('seccion')
       </div>
-      <div class="bg-secondary text-white text-center">Footer</div>
+      <div class="bg-secondary text-white text-center my-3">Footer</div>
 
     <!-- Optional JavaScript; choose one of the two! -->
 
