@@ -68,4 +68,6 @@
             
             </tbody>
           </table>
+
+          {{$notas->links()}}
 @endsection
