@@ -37,6 +37,13 @@ class PagesController extends Controller
         $nota = App\Nota::findOrFail($id);
         return view('notas.editar',compact('nota'));
     }
+
+    
+    public function eliminar($id){
+        $notaAEliminar = App\Nota::findOrFail($id);
+        $notaAEliminar->delete();
+        return back()->with('mensaje','Nota eliminada');
+    }
     
     public function update(Request $request, $id){
         $request->validate([
