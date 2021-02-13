@@ -9,7 +9,6 @@
             </button>
           </div>
           @endif
-
           
           <form action="{{route('notas.crear')}}" method="POST">
             @csrf
@@ -55,7 +54,9 @@
                   <a href="{{route('notas.detalle',$nota)}}">{{$nota->name}}</a>
                   </td>
                 <td>{{$nota->description}}</td>
-                <td>@mdo</td>
+                <td>
+                  <a href="{{route('notas.editar',$nota)}}" class="btn btn-warning btn-sm">Editar</a>
+                </td>
               </tr>
               @endforeach()
             

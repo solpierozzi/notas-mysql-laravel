@@ -32,7 +32,27 @@ class PagesController extends Controller
         $nota = App\Nota::findOrFail($id);
         return view('notas.detalle',compact('nota'));
     }
+
+    public function editar($id){
+        $nota = App\Nota::findOrFail($id);
+        return view('notas.editar',compact('nota'));
+    }
     
+    public function update(Request $request, $id){
+        $request->validate([
+            'name'=>'required',
+             'description'=>'required'
+        ]);
+ 
+        $notaUpdate = App\Nota::findOrFail($id);
+        $notaUpdate->name = $request->name;
+        $notaUpdate->description = $request->description;
+
+        $notaUpdate-> save();
+        return back()->with('mensaje','Nota actualizada');
+
+    }
+
     public function fotos(){
         return view('fotos');
     }
